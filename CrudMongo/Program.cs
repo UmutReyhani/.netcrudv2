@@ -1,6 +1,5 @@
 using CrudMongo.Models;
 using CrudMongo.Services;
-using MongoDotnetDemo.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +13,7 @@ builder.Services.Configure<DatabaseSettings>(
      builder.Configuration.GetSection("MyDb")
     );
 //resolving the CategoryService dependency here
-builder.Services.AddTransient<ICategoryService, CategoryService>();
+builder.Services.AddSingleton<IConnectionService, ConnectionService>();
 //resolving the ProductService dependency here
 var app = builder.Build();
 
